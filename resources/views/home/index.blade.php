@@ -1,32 +1,5 @@
-{{-- <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Renascer Pelotas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    @vite(['resources/css/app.scss', 'resources/js/app.js'])
-</head>
-<body>
-    <main>
-        <header class="header">
-            <nav class="container header__menu"></nav>
-            <h1>teste</h1>
-        </header>
-    </main>
-</body>
-</html> --}}
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -38,155 +11,110 @@
   <meta name="twitter:description" content="{{$page->descricao}}">
   <meta name="keywords" content="{{$page->keys}}">
   <meta property="og:url" content="{{Request::url()}}">
-  <meta property="og:image" content="{{ asset('storage/' . $page->card) }}">
+  <meta property="og:image" content="{{ Voyager::image($page->card)}}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{{$page->titulo}}">
-  <meta name="twitter:image" content="{{ asset('storage/' . $page->card) }}">
+  <meta name="twitter:image" content="{{ Voyager::image($page->card)}}">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicons -->
-  <link href="{{ asset('storage/' . $page->logo) }}" rel="icon">
-  <link href="{{ asset('storage/' . $page->logo) }}" rel="apple-touch-icon">
+  <link href="{{ Voyager::image($page->favicon)}}" rel="icon">
+  <link href="{{ Voyager::image($page->favicon)}}" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Vendor CSS Files -->
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('vendor/bootstrap/css/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('vendor/bootstrap/css/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('vendor/bootstrap/css/swiper-bundle.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('vendor/bootstrap/css/glightbox.min.css') }}" rel="stylesheet">
-
   @vite(['resources/css/app.scss', 'resources/js/app.js'])
+  
 </head>
 
 <body class="index-page">
-    
     <header id="header" class="header d-flex align-items-center fixed-top">
       <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-  
-        <a href="index.html" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
-          
-          <img src="{{ asset('storage/' . $page->logo) }}" alt="logo">
-        </a>
-  
-        <nav id="navmenu" class="navmenu">
-          
-        </nav>
-  
+        <a href="#" class="logo d-flex align-items-center">        
+          <img src="{{ Voyager::image($page->logo)}}" alt="logo">
+        </a>  
       </div>
     </header>
   
     <main class="main">
-  
-      <!-- Hero Section -->
       <section id="hero" class="hero section dark-background">
-  
-        <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
-  
+        <img src="{{ Voyager::image($content->background_head)}}" alt="" data-aos="fade-in">
         <div class="container">
           <div class="row">
             <div class="col-xl-4">
-              <h1 data-aos="fade-up">Focus On What Matters</h1>
+              <h1 data-aos="fade-up">{{$content->titulo}}</h1>
               <blockquote data-aos="fade-up" data-aos-delay="100">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis cum recusandae eum laboriosam voluptatem repudiandae odio, vel exercitationem officiis provident minima. </p>
+                <p>{{$content->descricao}}</p>
               </blockquote>
               <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                <a href="#about" class="btn-get-started">Get Started</a>
-                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                  <a class="btn-get-started" href="#conheca-mais">
+                    <i class="bi bi-play-circle"></i><span>Conheça mais</span>
+                  </a>
               </div>
             </div>
           </div>
         </div>
-  
-      </section><!-- /Hero Section -->
-  
-      <!-- Why Us Section -->
-      <section id="why-us" class="why-us section">
-  
+      </section>
+      
+
+      @if($content->video_mode!='desativado')
+        <section id="video">
+          <div class="container">
+            <h2>{{$content->video_title}}</h2>
+            @if($content->video_description!='')
+            <p>{{$content->video_description}}</p>
+            @endif
+            @if($content->video_archive!='')
+            <video controls>
+              <source src="{{Storage::url((json_decode($content->video_archive))[0]->download_link)}}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            @elseif($content->video_url!='')
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$content->video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            @endif
+          </div>
+        </section>
+      @endif
+
+      @if($content->gallery_mode!='desativado')
+      <section id="gallery">
         <div class="container">
-  
-          <div class="row g-0">
-  
-            <div class="col-xl-5 img-bg" data-aos="fade-up" data-aos-delay="100">
-              <img src="assets/img/why-us-bg.jpg" alt="">
-            </div>
-  
-            <div class="col-xl-7 slides position-relative" data-aos="fade-up" data-aos-delay="200">
-  
-              <div class="swiper init-swiper">
-                <script type="application/json" class="swiper-config">
-                  {
-                    "loop": true,
-                    "speed": 600,
-                    "autoplay": {
-                      "delay": 5000
-                    },
-                    "slidesPerView": "auto",
-                    "centeredSlides": true,
-                    "pagination": {
-                      "el": ".swiper-pagination",
-                      "type": "bullets",
-                      "clickable": true
-                    },
-                    "navigation": {
-                      "nextEl": ".swiper-button-next",
-                      "prevEl": ".swiper-button-prev"
-                    }
-                  }
-                </script>
-                <div class="swiper-wrapper">
-  
-                  <div class="swiper-slide">
-                    <div class="item">
-                      <h3 class="mb-3">Let's grow your business together</h3>
-                      <h4 class="mb-3">Optio reiciendis accusantium iusto architecto at quia minima maiores quidem, dolorum.</h4>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, ipsam perferendis asperiores explicabo vel tempore velit totam, natus nesciunt accusantium dicta quod quibusdam ipsum maiores nobis non, eum. Ullam reiciendis dignissimos laborum aut, magni voluptatem velit doloribus quas sapiente optio.</p>
-                    </div>
-                  </div><!-- End slide item -->
-  
-                  <div class="swiper-slide">
-                    <div class="item">
-                      <h3 class="mb-3">Unde perspiciatis ut repellat dolorem</h3>
-                      <h4 class="mb-3">Amet cumque nam sed voluptas doloribus iusto. Dolorem eos aliquam quis.</h4>
-                      <p>Dolorem quia fuga consectetur voluptatem. Earum consequatur nulla maxime necessitatibus cum accusamus. Voluptatem dolorem ut numquam dolorum delectus autem veritatis facilis. Et ea ut repellat ea. Facere est dolores fugiat dolor.</p>
-                    </div>
-                  </div><!-- End slide item -->
-  
-                  <div class="swiper-slide">
-                    <div class="item">
-                      <h3 class="mb-3">Aliquid non alias minus</h3>
-                      <h4 class="mb-3">Necessitatibus voluptatibus explicabo dolores a vitae voluptatum.</h4>
-                      <p>Neque voluptates aut. Soluta aut perspiciatis porro deserunt. Voluptate ut itaque velit. Aut consectetur voluptatem aspernatur sequi sit laborum. Voluptas enim dolorum fugiat aut.</p>
-                    </div>
-                  </div><!-- End slide item -->
-  
-                  <div class="swiper-slide">
-                    <div class="item">
-                      <h3 class="mb-3">Necessitatibus suscipit non voluptatem quibusdam</h3>
-                      <h4 class="mb-3">Tempora quos est ut quia adipisci ut voluptas. Deleniti laborum soluta nihil est. Eum similique neque autem ut.</h4>
-                      <p>Ut rerum et autem vel. Et rerum molestiae aut sit vel incidunt sit at voluptatem. Saepe dolorem et sed voluptate impedit. Ad et qui sint at qui animi animi rerum.</p>
-                    </div>
-                  </div><!-- End slide item -->
-  
-                </div>
-                <div class="swiper-pagination"></div>
-              </div>
-  
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
-            </div>
-  
-          </div>
-  
+            <h2>{{$content->gallery_title}}</h2>
+            @if($content->video_description!='')
+              	<p>{{$content->gallery_description}}</p>
+            @endif
+			<div class="slick-gallery">
+				@foreach (json_decode($content->gallery_images, true) as $image)
+					<div class="item">
+						<img class="img-fluid" src="{{ Voyager::image($image) }}" alt="imagem da galeria">
+					</div>    
+				@endforeach
+			</div>
+			<div class="slick-nav">
+				@foreach (json_decode($content->gallery_images, true) as $image)
+					<div class="item">
+						<img class="img-fluid" src="{{ Voyager::image($image) }}" alt="imagem da galeria">  
+					</div>  
+				@endforeach
+			</div>
         </div>
-  
-      </section><!-- /Why Us Section -->
+      </section>
+	  <div class="modal-gallery">
+		<span class="close">
+			<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 122.88"><defs><style>.cls-1{fill:#34610C;fill-rule:evenodd;}</style></defs><title>close-red</title><path class="cls-1" d="M61.44,0A61.44,61.44,0,1,1,0,61.44,61.44,61.44,0,0,1,61.44,0ZM74.58,36.8c1.74-1.77,2.83-3.18,5-1l7,7.13c2.29,2.26,2.17,3.58,0,5.69L73.33,61.83,86.08,74.58c1.77,1.74,3.18,2.83,1,5l-7.13,7c-2.26,2.29-3.58,2.17-5.68,0L61.44,73.72,48.63,86.53c-2.1,2.15-3.42,2.27-5.68,0l-7.13-7c-2.2-2.15-.79-3.24,1-5l12.73-12.7L36.35,48.64c-2.15-2.11-2.27-3.43,0-5.69l7-7.13c2.15-2.2,3.24-.79,5,1L61.44,49.94,74.58,36.8Z"/></svg>
+		</span>
+		<img src="" alt="">
+	  </div>
+      @endif
   
       <!-- Services Section -->
       <section id="services" class="services section">
@@ -448,13 +376,8 @@
     <div id="preloader"></div> --}}
   
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
   
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>

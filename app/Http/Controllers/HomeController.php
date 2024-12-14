@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page; // Importar o modelo
+use App\Content;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+
 
 class homeController extends Controller
 {
@@ -12,9 +14,10 @@ class homeController extends Controller
     {
         // Buscar todos os registros do modelo Home
         $page = Page::first();
+        $content = Content::first();
 
         // Retornar a visão com os dados (por enquanto podemos apenas exibir)
-        return view('home.index', compact('page'));
+        return view('home.index', compact('page','content'));
     }
 
     public function clear(){

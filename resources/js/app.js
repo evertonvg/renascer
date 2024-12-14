@@ -25,14 +25,11 @@
   /**
    * Mobile nav toggle
    */
-  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
   function mobileNavToogle() {
     document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
   }
-  mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+ 
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -88,77 +85,81 @@
 
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
-
-  /**
-   * Animation on scroll function and init
-   */
-  function aosInit() {
-    AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
-  }
-  window.addEventListener('load', aosInit);
-
-  /**
-   * Initiate glightbox
-   */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
-
-  /**
-   * Init swiper sliders
-   */
-  function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
-      let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
-      );
-
-      if (swiperElement.classList.contains("swiper-tab")) {
-        initSwiperWithCustomPagination(swiperElement, config);
-      } else {
-        new Swiper(swiperElement, config);
-      }
-    });
-  }
-
-  window.addEventListener("load", initSwiper);
-
-  /**
-   * Init isotope layout and filters
-   */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
-
-    let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
-      });
-    });
-
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
-        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-        this.classList.add('filter-active');
-        initIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        if (typeof aosInit === 'function') {
-          aosInit();
+ 
+  $('.slick-gallery').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    fade: true,
+    asNavFor: '.slick-nav',
+    responsive: [
+      {
+        breakpoint: 800,
+        settings: {
+          arrows: false,
         }
-      }, false);
-    });
-
+      },
+    ]
+    
   });
+  $('.slick-nav').slick({
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    arrows:false,
+    asNavFor: '.slick-gallery',
+    dots: true,
+    centerMode: true,
+    focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+        }
+      }
+    ]
+  });
+
+
+  $('.slick-gallery .item img').click((ev)=>{
+    $('.modal-gallery').addClass('active')
+    $('body').addClass('unflow')
+    console.warn(ev.currentTarget.src)
+    $('.modal-gallery img').attr('src',ev.currentTarget.src);
+
+  })
+
+  $('.modal-gallery').click((ev)=>{
+    $('.modal-gallery').removeClass('active')
+    $('body').removeClass('unflow')
+  })
+
+  $('.modal-gallery .close').click((ev)=>{
+    $('.modal-gallery').removeClass('active')
+    $('body').removeClass('unflow')
+  })
+  $('.modal-gallery img').click((ev)=>{
+    ev.stopPropagation()
+  })
+  $(document).keyup(function(e) {
+    if (e.key === "Escape") { 
+      $('.modal-gallery').removeClass('active')
+      $('body').removeClass('unflow')
+   }
+});
+
 
 })();
+
