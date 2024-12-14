@@ -512,7 +512,6 @@ h6 {
 
 .footer .copyright {
   border-top: 1px solid color-mix(in srgb, var(--accent-color), transparent 80%);
-  margin-top: 25px;
   padding-top: 25px;
   padding-bottom: 25px;
 }
@@ -2454,16 +2453,22 @@ section,
     }
   }
 }
-#services{
+#services,#contact{
   background-color: var(--gray-color);
 }
 
 .slick-gallery{
   height: 600px;
   margin-bottom: 20px;
+  @media(max-width:600px){
+    height: 300px;
+  }
   .item{
     height: 600px;
     cursor: pointer;
+    @media(max-width:600px){
+      height: 300px;
+    }
     img{
       height: 100%;
       margin: 0 auto;
@@ -2476,9 +2481,15 @@ section,
     margin: 0 5px;
   }
   height: 150px;
+  @media(max-width:600px){
+    height: 90px;
+  }
   .item{
     height: 150px;
     cursor: pointer;
+    @media(max-width:600px){
+      height: 90px;
+    }
     img{
       height: 100%;
       width: 100%;
@@ -2554,4 +2565,40 @@ section,
       padding-left: 0;
     }
   }
+}
+
+.advice{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  max-width: 320px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease all;
+  &.show{
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.form-label {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+input:focus + .form-label,
+textarea:focus + .form-label {
+  max-width: 100px;
+  transform: scale(0.7) translateX(-20px);
+  color: #198754; /* Verde padrão do Bootstrap */
+}
+
+/* Alinhando o botão à direita */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mb-3.position-relative{
+  display: flex;
+  flex-direction: column-reverse;
 }

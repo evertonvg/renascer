@@ -44,6 +44,9 @@
 		<x-video :content="$content"></x-video>
 		<x-gallery :content="$content"></x-gallery>
 		<x-services :content="$content" :services="$services"></x-services>
+		<x-units :content="$content"></x-units>
+		<x-contact :content="$content"></x-contact>
+		<x-advices></x-advices>
     </main>
     <x-footer></x-footer>
 	<x-cookies></x-cookies>

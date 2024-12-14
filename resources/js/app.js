@@ -154,6 +154,39 @@
     
 });
 
+const form = document.forms['submitForm']
+form.addEventListener('submit',(ev)=>{
+  let valid = true
+  ev.preventDefault()
+  $('.btn.btn-primary.submit').addClass('disabled');
+  if(!form.name.value.length){
+    valid = false
+    form.name.classList.add('is-invalid')
+  }else{
+    form.name.classList.remove('is-invalid')
+  }
+  if(!form.email.value.length){
+    valid = false
+    form.email.classList.add('is-invalid')
+  }else{
+    form.email.classList.remove('is-invalid')
+  }
+  if(!form.message.value.length){
+    valid = false
+    form.message.classList.add('is-invalid')
+  }else{
+    form.message.classList.remove('is-invalid')
+  }
+  console.warn(form.name.value)
+  console.warn(form.email.value)
+  console.warn(form.message.value)
+  if(!valid){
+    $('.btn.btn-primary.submit').removeClass('disabled');
+    return false
+  }
+  
+})
+
 
 })();
 
