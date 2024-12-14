@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page; // Importar o modelo
+use App\Service;
 use App\Content;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -15,9 +16,10 @@ class homeController extends Controller
         // Buscar todos os registros do modelo Home
         $page = Page::first();
         $content = Content::first();
+        $services = Service::all()->where("active","1");
 
         // Retornar a visão com os dados (por enquanto podemos apenas exibir)
-        return view('home.index', compact('page','content'));
+        return view('home.index', compact('page','content','services'));
     }
 
     public function clear(){
