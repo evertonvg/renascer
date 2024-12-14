@@ -136,9 +136,7 @@
   $('.slick-gallery .item img').click((ev)=>{
     $('.modal-gallery').addClass('active')
     $('body').addClass('unflow')
-    console.warn(ev.currentTarget.src)
     $('.modal-gallery img').attr('src',ev.currentTarget.src);
-
   })
 
   $('.modal-gallery').click((ev)=>{

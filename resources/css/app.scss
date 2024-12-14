@@ -12,6 +12,7 @@
   --accent-color: #9DCE5B; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --gray-color: #D1D1D1;
 }
 
 
@@ -42,6 +43,9 @@
 
 /* Smooth scroll */
 :root {
+  scroll-behavior: smooth;
+}
+html {
   scroll-behavior: smooth;
 }
 
@@ -2439,6 +2443,7 @@ section,
 
 
 #video{
+  background-color: var(--gray-color);
   .container{
     h2{
       margin-bottom: 20px;
@@ -2520,5 +2525,30 @@ section,
     max-height: 90%;
     max-width: 90%;
     object-fit: contain;
+  }
+}
+
+#about{
+  .left{
+    width: 50%;
+  }
+  .right{
+    width: 50%;
+    padding-left: 20px;
+    img{
+      margin: 0 auto;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  @media(max-width:991px){
+    .left{
+      width: 100%;
+      
+    }
+    .right{
+      width: 100%;
+      padding-left: 0;
+    }
   }
 }

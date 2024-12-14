@@ -41,7 +41,31 @@
       <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
         <a href="#" class="logo d-flex align-items-center">        
           <img src="{{ Voyager::image($page->logo)}}" alt="logo">
-        </a>  
+        </a> 
+		<nav id="navmenu" class="navmenu">
+			<ul>
+			  <li><a href="#" class="active">Inicio<br></a></li>
+			  @if($content->about_mode!='desativado')
+			  <li><a href="#about">Sobre</a></li>
+			  @endif
+			  @if($content->video_mode!='desativado')
+			  <li><a href="#video">Vídeo</a></li>
+			  @endif
+			  @if($content->gallery_mode!='desativado')
+			  <li><a href="#gallery">Galeria</a></li>
+			  @endif
+			  @if($content->services_mode!='desativado')
+			  <li><a href="#services">Serviços</a></li>
+			  @endif
+			  @if($content->units_mode!='desativado')
+			  <li><a href="#units">Unidades</a></li>
+			  @endif
+			  @if($content->contact_mode!='desativado')
+			  <li><a href="#contact">Contato</a></li>
+			  @endif
+			</ul>
+			<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+		  </nav>
       </div>
     </header>
   
@@ -56,7 +80,7 @@
                 <p>{{$content->descricao}}</p>
               </blockquote>
               <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                  <a class="btn-get-started" href="#conheca-mais">
+                  <a class="btn-get-started" href="#about">
                     <i class="bi bi-play-circle"></i><span>Conheça mais</span>
                   </a>
               </div>
@@ -65,6 +89,21 @@
         </div>
       </section>
       
+	  @if($content->about_mode!='desativado')
+	  	<section id="about">
+			<div class="container">
+				<h2 class="mb-4">{{$content->about_title}}</h2>
+				<div class="d-flex p-2 flex-column-reverse flex-lg-row justify-content-center align-items-start">
+					<div class="left">
+						{!! $content->about_description !!}
+					</div>
+					<div class="right">
+						<img src="{{ Voyager::image($content->about_image)}}" alt="logo da renascer" class="mw-100">
+					</div>
+				</div>
+			</div>
+		</section>
+	  @endif
 
       @if($content->video_mode!='desativado')
         <section id="video">
@@ -115,6 +154,8 @@
 		<img src="" alt="">
 	  </div>
       @endif
+
+	  
   
       <!-- Services Section -->
       <section id="services" class="services section">
