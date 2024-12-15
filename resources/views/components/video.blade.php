@@ -6,8 +6,8 @@
       <p>{{$content->video_description}}</p>
       @endif
       @if($content->video_archive!='')
-      <video controls>
-        <source src="{{Storage::url((json_decode($content->video_archive))[0]->download_link)}}" type="video/mp4">
+      <video controls poster="{{ Voyager::image($content->video_poster) }}" id="video-player" preload="auto">
+        <source src="{{Storage::url((json_decode($content->video_archive))[0]->download_link)}}" type="video/mp4" >
         Your browser does not support the video tag.
       </video>
       @elseif($content->video_url!='')

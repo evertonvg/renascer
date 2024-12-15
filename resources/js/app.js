@@ -1,224 +1,174 @@
-/**
-* Template Name: Nova
-* Template URL: https://bootstrapmade.com/nova-bootstrap-business-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
 import axios from "axios";
 
 (function() {
   "use strict";
 
-  /**
-   * Apply .scrolled class to the body as the page is scrolled down
-   */
+
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
     if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
-  }
+    	window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+  	}
 
-  document.addEventListener('scroll', toggleScrolled);
-  window.addEventListener('load', toggleScrolled);
+	document.addEventListener('scroll', toggleScrolled);
+	window.addEventListener('load', toggleScrolled);
 
-  /**
-   * Mobile nav toggle
-   */
+  	let scrollTop = document.querySelector('.scroll-top');
 
-  function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-  }
+	function toggleScrollTop() {
+		if (scrollTop) {
+		window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+		}
+	}
+	window.addEventListener('load', toggleScrollTop);
+	document.addEventListener('scroll', toggleScrollTop);
+
+	$('.navmenu a').click(function(ev){
+		ev.preventDefault()
+		const el = document.querySelector($(this).attr('data-href'))
+		window.scrollTo({
+			top: el.offsetTop - 80,
+			behavior: 'smooth',
+		});
+	})
  
-
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
-      }
-    });
-
-  });
-
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
-
-  /**
-   * Preloader
-   */
-  // const preloader = document.querySelector('#preloader');
-  // if (preloader) {
-  //   window.addEventListener('load', () => {
-  //     preloader.remove();
-  //   });
-  // }
-
-  /**
-   * Scroll top button
-   */
-  let scrollTop = document.querySelector('.scroll-top');
-
-  function toggleScrollTop() {
-    if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-    }
-  }
- 
-
-  window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
-
-  $('.navmenu a').click(function(ev){
-	ev.preventDefault()
-	const el = document.querySelector($(this).attr('data-href'))
-	window.scrollTo({
-		top: el.offsetTop - 80,
-		behavior: 'smooth',
+	$('.slick-gallery').slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: true,
+		fade: true,
+		asNavFor: '.slick-nav',
+		Infinity:false,
+		responsive: [
+		{
+			breakpoint: 800,
+			settings: {
+			arrows: false,
+			}
+		},
+		]
+		
 	});
-  })
- 
-  $('.slick-gallery').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    fade: true,
-    asNavFor: '.slick-nav',
-	Infinity:false,
-    responsive: [
-      {
-        breakpoint: 800,
-        settings: {
-          arrows: false,
-        }
-      },
-    ]
-    
-  });
-  $('.slick-nav').slick({
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    arrows:false,
-	Infinity:false,
-    asNavFor: '.slick-gallery',
-    dots: true,
-    centerMode: true,
-    focusOnSelect: true,
-	autoplay: true,
-  	autoplaySpeed: 5000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 3,
+	$('.slick-nav').slick({
+		slidesToShow: 6,
+		slidesToScroll: 1,
+		arrows:false,
+		Infinity:false,
+		asNavFor: '.slick-gallery',
+		dots: true,
+		centerMode: true,
+		focusOnSelect: true,
+		autoplay: true,
+		autoplaySpeed: 5000,
+		responsive: [
+		{
+			breakpoint: 1024,
+			settings: {
+			slidesToShow: 4,
+			}
+		},
+		{
+			breakpoint: 600,
+			settings: {
+			slidesToShow: 3,
 
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-			dots:false,
-        }
-      }
-    ]
-  });
+			}
+		},
+		{
+			breakpoint: 480,
+			settings: {
+			slidesToShow: 2,
+				dots:false,
+			}
+		}
+		]
+	});
 
 
-  $('.slick-gallery .item img').click((ev)=>{
-    $('.modal-gallery').addClass('active')
-    $('body').addClass('unflow')
-    $('.modal-gallery img').attr('src',ev.currentTarget.src);
-  })
+	$('.slick-gallery .item img').click((ev)=>{
+		$('.modal-gallery').addClass('active')
+		$('body').addClass('unflow')
+		$('.modal-gallery img').attr('src',ev.currentTarget.src);
+	})
 
-  $('.modal-gallery').click((ev)=>{
-    $('.modal-gallery').removeClass('active')
-    $('body').removeClass('unflow')
-  })
+	$('.modal-gallery').click((ev)=>{
+		$('.modal-gallery').removeClass('active')
+		$('body').removeClass('unflow')
+	})
 
-  $('.modal-gallery .close').click((ev)=>{
-    $('.modal-gallery').removeClass('active')
-    $('body').removeClass('unflow')
-  })
-  $('.modal-gallery img').click((ev)=>{
-    ev.stopPropagation()
-  })
-  $(document).keyup(function(e) {
-    if (e.key === "Escape") { 
-      $('.modal-gallery').removeClass('active')
-      $('body').removeClass('unflow')
-   }
-});
+	$('.modal-gallery .close').click((ev)=>{
+		$('.modal-gallery').removeClass('active')
+		$('body').removeClass('unflow')
+	})
+	$('.modal-gallery img').click((ev)=>{
+		ev.stopPropagation()
+	})
+	$(document).keyup(function(e) {
+		if (e.key === "Escape") { 
+		$('.modal-gallery').removeClass('active')
+		$('body').removeClass('unflow')
+	}
+	});
 
-$('.alert .btn-close').click(()=>{
-	$('.alert.advice').removeClass('show')
-})
+	$('.alert .btn-close').click(()=>{
+		$('.alert.advice').removeClass('show')
+	})
 
 const form = document.forms['submitForm']
-let pristine = new Pristine(form);
-$('input#whatsapp').mask('(00)00000-0000');
 
 
-pristine.addValidator(form.name, function(value) {
+if(form){
+	let pristine = new Pristine(form);
+	$('input#whatsapp').mask('(00)00000-0000');
+
+
+	pristine.addValidator(form.name, function(value) {
     if (value.split(' ').length >= 2 && value.split(' ')[1]!='' && value.length >= 5){
         return true;
     }
 
     return false;
 }, "Digite seu nome seguido do sobrenome. Mínimo de 5 caracteres", 2, false);
-
-form.addEventListener('submit',(ev)=>{
-  ev.preventDefault()
-  let valid = pristine.validate();
- 
-  if(!valid){
-    $('.btn.btn-primary.submit').removeClass('disabled');
-    return false
-  }
-
-  $('.alert-primary.advice').addClass('show')
-  $('.alert-success.advice').removeClass('show')
-  $('.alert-danger.advice').removeClass('show')
-
-  axios.post('/api/enviar-email', {
-    nome: form.name.value,
-    email: form.email.value,
-    telefone: form.whatsapp.value,
-    assunto: form.message.value
-  }).then(response => {
-		$('.alert-primary.advice').removeClass('show')
-		$('.alert-success.advice').addClass('show')
-		$('.alert-danger.advice').removeClass('show')
-      console.log(response.data.message);
-  }).catch(error => {
-		$('.alert-primary.advice').removeClass('show')
-		$('.alert-danger.advice').addClass('show')
-		$('.alert-success.advice').removeClass('show')
-      	console.error(error.response.data);
-  }).finally(final =>{
-	$('.btn.btn-primary.submit').removeClass('disabled')
-  });
-  
-})
+	form.addEventListener('submit',(ev)=>{
+	  ev.preventDefault()
+	  let valid = pristine.validate();
+	 
+	  if(!valid){
+		$('.btn.btn-primary.submit').removeClass('disabled');
+		return false
+	  }
+	
+	  $('.alert-primary.advice').addClass('show')
+	  $('.alert-success.advice').removeClass('show')
+	  $('.alert-danger.advice').removeClass('show')
+	
+	  axios.post('/api/enviar-email', {
+		nome: form.name.value,
+		email: form.email.value,
+		telefone: form.whatsapp.value,
+		assunto: form.message.value
+	  }).then(response => {
+			$('.alert-primary.advice').removeClass('show')
+			$('.alert-success.advice').addClass('show')
+			$('.alert-danger.advice').removeClass('show')
+			
+	  }).catch(error => {
+			$('.alert-primary.advice').removeClass('show')
+			$('.alert-danger.advice').addClass('show')
+			$('.alert-success.advice').removeClass('show')
+			  console.error(error.response.data);
+	  }).finally(final =>{
+			$('.btn.btn-primary.submit').removeClass('disabled')
+			form.name.value = ''
+			form.email.value = ''
+			form.whatsapp.value = ''
+			form.message.value = ''
+	  });
+	  
+	})
+}
 
 
 })();
@@ -278,5 +228,34 @@ window.onload = function() {
 
 	// Atualiza o menu ao carregar a página
 	updateActiveMenuItem();
+
+
+
+	// video customizado
+	// const video = document.querySelector('#video-player')
+	// if(video){
+	// 	const player = videojs('video-player');
+	// 	// Criar botão personalizado
+	// 	const customButton = videojs.getComponent('Button');
+	// 	const MyCustomButton = videojs.extend(customButton, {
+	// 		constructor: function () {
+	// 			customButton.apply(this, arguments);
+	// 			this.controlText('Custom Button'); // Texto alternativo (acessibilidade)
+	// 			this.addClass('vjs-custom-button'); // Classe CSS personalizada
+	// 		},
+	// 		handleClick: function () {
+	// 			// Ação ao clicar no botão
+	// 			alert('Botão personalizado clicado!');
+	// 		}
+	// 	});
+	
+	// 	// Registrar o novo botão
+	// 	videojs.registerComponent('MyCustomButton', MyCustomButton);
+	
+	// 	// Adicionar o botão ao player
+	// 	player.ready(function () {
+	// 		this.controlBar.addChild('MyCustomButton', {});
+	// 	});
+	// }
 }
 

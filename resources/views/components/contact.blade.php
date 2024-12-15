@@ -61,9 +61,10 @@
       
       <!-- Botão de Envio -->
       <div class="form-actions">
-          <button type="submit" class="btn btn-primary submit">Enviar</button>
+          <button type="submit" class="btn btn-dark submit">Enviar</button>
       </div>
   </form>
   </div>
 </section>
+
 @endif

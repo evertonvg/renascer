@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Page; // Importar o modelo
 use App\Service;
 use App\Content;
+use App\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -16,7 +17,8 @@ class homeController extends Controller
         $page = Page::first();
         $content = Content::first();
         $services = Service::all()->where("active","1");
-        return view('home.index', compact('page','content','services'));
+        $units = Unit::all()->where("active","1");
+        return view('home.index', compact('page','content','services','units'));
     }
 
     public function clear(){
