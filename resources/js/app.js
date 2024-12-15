@@ -6,6 +6,8 @@
 * License: https://bootstrapmade.com/license/
 */
 
+import axios from "axios";
+
 (function() {
   "use strict";
 
@@ -79,6 +81,15 @@
 
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
+
+  $('.navmenu a').click(function(ev){
+	ev.preventDefault()
+	const el = document.querySelector($(this).attr('data-href'))
+	window.scrollTo({
+		top: el.offsetTop - 80,
+		behavior: 'smooth',
+	});
+  })
  
   $('.slick-gallery').slick({
     slidesToShow: 1,
@@ -150,14 +161,18 @@
       $('.modal-gallery').removeClass('active')
       $('body').removeClass('unflow')
    }
-
-    
 });
 
+$('.alert .btn-close').click(()=>{
+	$('.alert.advice').removeClass('show')
+})
+
 const form = document.forms['submitForm']
+$('input#whatsapp').mask('(00)00000-0000');
 form.addEventListener('submit',(ev)=>{
   let valid = true
   ev.preventDefault()
+  
   $('.btn.btn-primary.submit').addClass('disabled');
   if(!form.name.value.length){
     valid = false
@@ -171,19 +186,48 @@ form.addEventListener('submit',(ev)=>{
   }else{
     form.email.classList.remove('is-invalid')
   }
+  
+  if(form.whatsapp.value.length < 14){
+    valid = false
+    form.whatsapp.classList.add('is-invalid')
+  }else{
+    form.whatsapp.classList.remove('is-invalid')
+  }
+
   if(!form.message.value.length){
     valid = false
     form.message.classList.add('is-invalid')
   }else{
     form.message.classList.remove('is-invalid')
   }
-  console.warn(form.name.value)
-  console.warn(form.email.value)
-  console.warn(form.message.value)
+ 
   if(!valid){
     $('.btn.btn-primary.submit').removeClass('disabled');
     return false
   }
+
+  $('.alert-primary.advice').addClass('show')
+  $('.alert-success.advice').removeClass('show')
+  $('.alert-danger.advice').removeClass('show')
+
+  axios.post('/api/enviar-email', {
+    nome: form.name.value,
+    email: form.email.value,
+    telefone: form.whatsapp.value,
+    assunto: form.message.value
+  }).then(response => {
+		$('.alert-primary.advice').removeClass('show')
+		$('.alert-success.advice').addClass('show')
+		$('.alert-danger.advice').removeClass('show')
+      console.log(response.data.message);
+  }).catch(error => {
+		$('.alert-primary.advice').removeClass('show')
+		$('.alert-danger.advice').addClass('show')
+		$('.alert-success.advice').removeClass('show')
+      	console.error(error.response.data);
+  }).finally(final =>{
+	$('.btn.btn-primary.submit').removeClass('disabled')
+  });
   
 })
 
@@ -208,5 +252,46 @@ window.onload = function() {
       document.cookie = "cookies_accepted=false; path=/; max-age=" + 60 * 60 * 24 * 365;
       document.getElementById('cookie-consent').style.display = 'none';
   };
+
+
+
+
+
+
+  	const menuItems = $('.navmenu a'); // Seleciona todos os itens do menu
+	const sections = $('section'); // Seleciona todas as seções
+	
+	// Função para atualizar o menu com a classe "ativa"
+	function updateActiveMenuItem() {
+		let currentSection = null;
+		
+		// Verifica qual seção está visível na tela
+		sections.each(function () {
+			const sectionTop = $(this).offset().top;
+			const sectionBottom = sectionTop + $(this).outerHeight();
+			const scrollPosition = $(window).scrollTop();
+			
+			// Verifica se a seção está visível na tela
+			if (scrollPosition >= sectionTop - 81 && scrollPosition < sectionBottom - 81) {
+				currentSection = $(this);
+				return false; // Encerra o loop quando encontrar a seção visível
+			}
+		});
+
+		// Se a seção atual for encontrada, atualiza a classe ativa no menu
+		menuItems.removeClass('active'); // Remove a classe 'ativa' de todos os itens
+		if (currentSection) {
+			const activeLink = $('a[href="#' + currentSection.attr('id') + '"]');
+			activeLink.addClass('active'); // Adiciona a classe 'ativa' no item do menu correspondente
+		}
+	}
+
+	// Atualiza o menu ao rolar a página
+	$(window).on('scroll', function () {
+		updateActiveMenuItem();
+	});
+
+	// Atualiza o menu ao carregar a página
+	updateActiveMenuItem();
 }
 

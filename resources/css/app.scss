@@ -40,14 +40,11 @@
   --surface-color: #9DCE5B;
   --contrast-color: #ffffff;
 }
+*, html.body {
+  scroll-behavior: smooth !important;
+}
 
-/* Smooth scroll */
-:root {
-  scroll-behavior: smooth;
-}
-html {
-  scroll-behavior: smooth;
-}
+
 
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
@@ -203,6 +200,10 @@ h6 {
     justify-content: space-between;
     white-space: nowrap;
     transition: 0.3s;
+    cursor: pointer;
+  }
+  .navmenu:visited{
+    color: red;
   }
 
   .navmenu a i,
@@ -2575,10 +2576,35 @@ section,
   opacity: 0;
   visibility: hidden;
   transition: 0.3s ease all;
+  padding-right: 35px;
   &.show{
     visibility: visible;
     opacity: 1;
   }
+  button{
+    position: absolute;
+    top:5px;
+    right: 5px;
+  }
+}
+
+.float-button{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float{
+	margin-top:16px;
 }
 
 .form-label {

@@ -17,6 +17,12 @@
           <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu melhor email" >
           <label for="email" class="form-label">E-mail</label>
       </div>
+
+      <!-- Campo para whatsapp -->
+      <div class="mb-3 position-relative">
+        <input type="text" class="form-control whatsapp" id="whatsapp" name="whatsapp" placeholder="Digite seu whatsapp" >
+        <label for="whatsapp" class="form-label">Whatsapp</label>
+    </div>
       
       <!-- Campo para Mensagem -->
       <div class="mb-3 position-relative">
