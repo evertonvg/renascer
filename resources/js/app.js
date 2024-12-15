@@ -97,6 +97,7 @@ import axios from "axios";
     arrows: true,
     fade: true,
     asNavFor: '.slick-nav',
+	Infinity:false,
     responsive: [
       {
         breakpoint: 800,
@@ -111,10 +112,13 @@ import axios from "axios";
     slidesToShow: 6,
     slidesToScroll: 1,
     arrows:false,
+	Infinity:false,
     asNavFor: '.slick-gallery',
     dots: true,
     centerMode: true,
     focusOnSelect: true,
+	autoplay: true,
+  	autoplaySpeed: 5000,
     responsive: [
       {
         breakpoint: 1024,
@@ -126,12 +130,14 @@ import axios from "axios";
         breakpoint: 600,
         settings: {
           slidesToShow: 3,
+
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
+			dots:false,
         }
       }
     ]
@@ -168,38 +174,21 @@ $('.alert .btn-close').click(()=>{
 })
 
 const form = document.forms['submitForm']
+let pristine = new Pristine(form);
 $('input#whatsapp').mask('(00)00000-0000');
-form.addEventListener('submit',(ev)=>{
-  let valid = true
-  ev.preventDefault()
-  
-  $('.btn.btn-primary.submit').addClass('disabled');
-  if(!form.name.value.length){
-    valid = false
-    form.name.classList.add('is-invalid')
-  }else{
-    form.name.classList.remove('is-invalid')
-  }
-  if(!form.email.value.length){
-    valid = false
-    form.email.classList.add('is-invalid')
-  }else{
-    form.email.classList.remove('is-invalid')
-  }
-  
-  if(form.whatsapp.value.length < 14){
-    valid = false
-    form.whatsapp.classList.add('is-invalid')
-  }else{
-    form.whatsapp.classList.remove('is-invalid')
-  }
 
-  if(!form.message.value.length){
-    valid = false
-    form.message.classList.add('is-invalid')
-  }else{
-    form.message.classList.remove('is-invalid')
-  }
+
+pristine.addValidator(form.name, function(value) {
+    if (value.split(' ').length >= 2 && value.split(' ')[1]!='' && value.length >= 5){
+        return true;
+    }
+
+    return false;
+}, "Digite seu nome seguido do sobrenome. Mínimo de 5 caracteres", 2, false);
+
+form.addEventListener('submit',(ev)=>{
+  ev.preventDefault()
+  let valid = pristine.validate();
  
   if(!valid){
     $('.btn.btn-primary.submit').removeClass('disabled');
@@ -252,10 +241,6 @@ window.onload = function() {
       document.cookie = "cookies_accepted=false; path=/; max-age=" + 60 * 60 * 24 * 365;
       document.getElementById('cookie-consent').style.display = 'none';
   };
-
-
-
-
 
 
   	const menuItems = $('.navmenu a'); // Seleciona todos os itens do menu
