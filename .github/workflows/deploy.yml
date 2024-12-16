@@ -1,0 +1,43 @@
+name: Deploy Laravel App
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar o repositório
+      uses: actions/checkout@v3
+
+    - name: Configurar acesso SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H "{{ secrets.ftp_host }}" >> ~/.ssh/known_hosts
+
+    - name: Enviar arquivos via rsync
+      env:
+        DEPLOY_PATH: ${{ github.ref_name == 'main' && '/public_html' || '/public_html/dev' }}
+      run: |
+        rsync -avz --delete \
+          --exclude=".env" \
+          --exclude="node_modules" \
+          --exclude="storage" \
+          ./ ${{ secrets.ftp_user }}:$DEPLOY_PATH
+
+    - name: Instalar dependências
+      run: |
+        ssh ${{ secrets.ftp_user }} << 'EOF'
+        cd $DEPLOY_PATH
+        composer install --no-dev --optimize-autoloader
+        # php artisan migrate --force
+        php artisan config:cache
+        php artisan route:cache
+        php artisan view:cache
+        EOF
