@@ -10,6 +10,17 @@ export default defineConfig({
         
     ],
     build: {
-        outDir: './build', // Gerar build na raiz
+        rollupOptions: {
+            output: [
+              {
+                // Primeiro destino
+                dir: 'public/build', // Primeiro diretório de build
+              },
+              {
+                // Segundo destino
+                dir: 'build', // Segundo diretório de build,
+              },
+            ],
+          },
     },
 });
