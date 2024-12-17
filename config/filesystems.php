@@ -55,6 +55,16 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+        'voyager' => [
+            'driver' => 'local',
+            'root' => env('APP_ENV') === 'production'
+                ? base_path('files')             // Produção: mantém "files" na raiz
+                : base_path('files'),         // Local: volta uma pasta e usa "files"
+            'url' => env('APP_ENV') === 'production'
+                ? env('APP_URL') . '/files'      // Produção: URL padrão
+                : env('APP_URL') . '/files',  // Local: caminho anterior
+            'visibility' => 'public',
+        ],
 
     ],
 

@@ -55,8 +55,14 @@ return [
     */
 
     'storage' => [
-        'disk' => 'public',
+    'disk' => 'voyager', // Continua usando o disco "voyager"
+
+    'uploads' => [
+        'url' => env('APP_ENV') === 'production'
+            ? env('APP_URL') . '/files'      // Produção: URL padrão
+            : env('APP_URL') . '/files',  // Local: caminho anterior
     ],
+],
 
     /*
     |--------------------------------------------------------------------------

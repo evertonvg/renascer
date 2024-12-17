@@ -7,5 +7,9 @@ export default defineConfig({
             input: ['resources/css/app.scss', 'resources/js/app.js'],
             refresh: true,
         }),
+        
     ],
+    build: {
+        outDir: './build', // Gerar build na raiz
+    },
 });
