@@ -8,7 +8,7 @@
     <form action="" id="submit-form" name="submitForm" method="POST">
       <!-- Campo para Nome -->
       <div class="mb-4 position-relative form-group">
-          <label for="name" class="form-label">Nome</label>
+          <label for="name" class="form-label">Nome:</label>
           <input type="text" 
             class="form-control" 
             id="name" 
@@ -21,7 +21,7 @@
       
       <!-- Campo para Email -->
       <div class="mb-4 position-relative form-group">
-          <label for="email"  class="form-label">E-mail</label>
+          <label for="email"  class="form-label">E-mail:</label>
           <input 
             type="text" 
             class="form-control" 
@@ -37,7 +37,7 @@
 
       <!-- Campo para whatsapp -->
       <div class="mb-4 position-relative form-group">
-        <label for="whatsapp" class="form-label">Whatsapp</label>
+        <label for="whatsapp" class="form-label">Whatsapp:</label>
         <input 
             type="text" 
             class="form-control whatsapp" 
@@ -48,10 +48,24 @@
             data-pristine-minlength-message="Digite um whatsapp com DDD + 9 digitos"
             data-pristine-required-message="Digite um whatsapp com DDD + 9 digitos">
     </div>
+
+    <!-- Campo para assunto -->
+    <div class="mb-4 position-relative form-group">
+      <label for="subject" class="form-label">Assunto:</label>
+      <input 
+          type="text" 
+          class="form-control" 
+          id="subject" name="subject" 
+          placeholder="Qual o assunto?"
+          data-pristine-required 
+          data-pristine-minlength="5" 
+          data-pristine-minlength-message="O assunto requer pelo menos 5 caracteres"
+          data-pristine-required-message="O campo assunto é requerido">
+  </div>
       
       <!-- Campo para Mensagem -->
       <div class="mb-4 position-relative form-group">
-          <label for="message" class="form-label">Mensagem</label>
+          <label for="message" class="form-label">Mensagem:</label>
           <textarea class="form-control" id="message" name="message" rows="5" placeholder="Deixe sua mensagem" 
           data-pristine-required 
           data-pristine-minlength="10" 

@@ -17,12 +17,13 @@ class ContatoController extends Controller
             'email' => 'required|email',
             'telefone' => 'required|string',
             'assunto' => 'required|string|max:255',
+            'mensagem' => 'required|string',
         ]);
 
         $email = Page::first()->email;
 
         // Dados do formulário
-        $dados = $request->only('nome', 'email', 'telefone', 'assunto');
+        $dados = $request->only('nome', 'email', 'telefone', 'assunto','mensagem');
 
         // Enviar o e-mail
         Mail::to($email)->send(new ContatoMailable($dados));

@@ -145,10 +145,11 @@ if(form){
 	  $('.alert-danger.advice').removeClass('show')
 	
 	  axios.post('/api/enviar-email', {
-		nome: form.name.value,
-		email: form.email.value,
-		telefone: form.whatsapp.value,
-		assunto: form.message.value
+			nome: form.name.value,
+			email: form.email.value,
+			telefone: form.whatsapp.value,
+			assunto: form.subject.value,
+			mensagem: form.message.value
 	  }).then(response => {
 			$('.alert-primary.advice').removeClass('show')
 			$('.alert-success.advice').addClass('show')
@@ -164,6 +165,7 @@ if(form){
 			form.name.value = ''
 			form.email.value = ''
 			form.whatsapp.value = ''
+			form.subject.value = ''
 			form.message.value = ''
 	  });
 	  
