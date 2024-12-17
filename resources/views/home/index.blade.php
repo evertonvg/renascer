@@ -50,6 +50,5 @@
     </main>
     <x-footer :page="$page"></x-footer>
 	<x-cookies></x-cookies>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
