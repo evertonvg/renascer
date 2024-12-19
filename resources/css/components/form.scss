@@ -1,0 +1,50 @@
+
+
+.form-label {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+input:focus + .form-label,
+textarea:focus + .form-label {
+  max-width: 100px;
+  transform: scale(0.7) translateX(-20px);
+  color: #198754; /* Verde padrão do Bootstrap */
+}
+
+/* Alinhando o botão à direita */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mb-3.position-relative{
+  display: flex;
+  // flex-direction: column-reverse;
+}
+
+.pristine-error{
+  color: #c00;
+  top: 105%;
+  position: absolute;
+  font-size: 10px;
+}
+
+ /* Estilo personalizado para os botões */
+ .vjs-custom-button {
+  background-color: #ff5722;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.vjs-custom-button:hover {
+  background-color: #e64a19;
+}
+
+/* Ajustes gerais */
+.vjs-custom-button:focus {
+  outline: none;
+}

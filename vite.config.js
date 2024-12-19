@@ -13,13 +13,7 @@ export default defineConfig({
         rollupOptions: {
             output: [
               {
-                // Primeiro destino
-                dir: './public/build', // Primeiro diretório de build
-                manifest: true,
-              },
-              {
-                // Segundo destino
-                dir: './build', // Segundo diretório de build,
+                dir: './public/build',
                 manifest: true,
               },
             ],

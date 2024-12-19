@@ -1,0 +1,70 @@
+
+.social-section {
+  background-color: #f8f9fa; /* Cor de fundo */
+  padding: 20px;
+  text-align: center;
+}
+
+.social-section h3 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  color: #333;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: #007bff; /* Cor do botão */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 24px;
+  transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: #0056b3; /* Cor ao passar o mouse */
+}
+
+.social-icons a.facebook {
+  background-color: #4267B2; /* Cor específica para o Facebook */
+}
+
+.social-icons a.facebook:hover {
+  background-color: #365899;
+}
+
+.social-icons a.instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: white;
+}
+
+.social-icons a.instagram:hover {
+  opacity: 0.8;
+}
+.social-icons a.bluesky {
+  background-color: #1DA1F2; /* Cor específica para o Twitter */
+}
+
+.social-icons a.bluesky:hover {
+  background-color: #0d8de0;
+}
+
+.social-icons a.twitter {
+  background-color: #000; /* Cor específica para o Twitter */
+}
+
+.social-icons a.twitter:hover {
+  background-color: #003;
+}
